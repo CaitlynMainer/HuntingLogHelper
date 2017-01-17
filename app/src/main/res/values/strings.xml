@@ -2,14 +2,14 @@
     <string name="app_name">Hunting Log Helper</string>
 
     <string name="welcome_text">
-        "Welcome!\n"
-        "This app was created to assist in keeping up with the monsters needed to complete the various hunting logs in FFXIV."
-        "The logs have been organized by class (Archer, Conjurer, etc), rank (1 - 5), the region/area in which to find"
-        "the monsters (South Shroud - Upper Paths), the monster name (Diseased Treant, Earth Sprite, etc), the amount of the monsters"
-        "needed to complete the log, and finally the x and y loc (x22,y22).\n"
-        "It was done in this fashion to allow the player to quickly locate all needed monsters in a region/area, before moving on to a"
-        "new location, without having to waste Gil or time teleporting back and forth.  Unfortunetly, there is no exact coordinates"
-        "given for monsters needed inside of dungeons, only the dungeon locations are given."
+        "This app was created to assist tracking hunting logs and crafting logs in FFXIV."
+        "The logs are organized by class. Hunting logs show the name, the amount needed, the region/area where the monsters are found and the x and y position of the dungeon."
+        "There is no exact position of the monsters within the dungeon.\n"
+        "Crafting logs are also organized by class and show the required level, ingredients and skill to craft an item."
+        "Both monster and item icons are available as an optional icon pack (due to the extra size of 35 MB) which can be downloaded in the settings."
+        "The app was designed and written by Michiyo, with the help of Naomi (Data entry, etc) and Forecaster (Data scraping)."
+        "The hunting and crafting logs were scraped from http://ffxiv.gamerescape.com"
+        "Make sure to keep the app up-to-date to ensure having the latest updated logs."
     </string>
     <string name="action_settings">Settings</string>
     <string name="action_markAll">Complete List</string>
