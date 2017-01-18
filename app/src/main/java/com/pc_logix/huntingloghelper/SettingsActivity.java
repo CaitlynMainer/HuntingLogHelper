@@ -50,6 +50,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.channels.FileChannel;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -97,6 +98,7 @@ public class SettingsActivity extends AppCompatActivity {
         Button bak = (Button) findViewById(R.id.backup);
         Button down = (Button) findViewById(R.id.downloadIcons);
         Button delete = (Button) findViewById(R.id.deleteIcons);
+        Button copyDB = (Button) findViewById(R.id.copyDB);
         TextView versionText = (TextView) findViewById(R.id.versionText);
         versionText.setText(strVersion + strVersionCode + " DB Version " + DBHelper.version + " Has legacy tables: " + Helper.isTableExists("logs", true, this.getApplicationContext()));
         btn.setOnClickListener(new OnClickListener() {
@@ -139,7 +141,14 @@ public class SettingsActivity extends AppCompatActivity {
                 deleteIcons();
             }
         });
+        copyDB.setOnClickListener(new OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                copyDB();
+            }
+        });
         setupActionBar();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         showAds = (Switch) findViewById(R.id.showAds);
@@ -266,6 +275,29 @@ public class SettingsActivity extends AppCompatActivity {
             Log.e("Hunting Log", "Error in Reading: " + e.getLocalizedMessage());
             Toast.makeText(SettingsActivity.this, "Error reading backup JSONException",
                     Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void copyDB(){
+        try {
+            File sd = Environment.getExternalStorageDirectory();
+            File data = Environment.getDataDirectory();
+
+            if (sd.canWrite()) {
+                String currentDBPath = "//data//com.pc_logix.huntingloghelper//databases//huntinglogs.db";
+                String backupDBPath = "huntinglogs.db";
+                File currentDB = new File(data, currentDBPath);
+                File backupDB = new File(sd, backupDBPath);
+
+                if (currentDB.exists()) {
+                    FileChannel src = new FileInputStream(currentDB).getChannel();
+                    FileChannel dst = new FileOutputStream(backupDB).getChannel();
+                    dst.transferFrom(src, 0, src.size());
+                    src.close();
+                    dst.close();
+                }
+            }
+        } catch (Exception e) {
         }
     }
 

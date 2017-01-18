@@ -73,4 +73,15 @@
         android:layout_alignLeft="@+id/downloadIcons"
         android:layout_alignStart="@+id/downloadIcons" />
 
+    <Button
+        android:text="Copy DB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/restore"
+        android:layout_alignRight="@+id/restore"
+        android:layout_alignEnd="@+id/restore"
+        android:id="@+id/copyDB"
+        android:layout_toRightOf="@+id/backup"
+        android:layout_toEndOf="@+id/backup" />
+
 </RelativeLayout>
