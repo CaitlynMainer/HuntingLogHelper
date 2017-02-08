@@ -1,10 +1,8 @@
 package com.pc_logix.huntingloghelper.util;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.text.Html;
 import android.text.Spanned;
@@ -18,11 +16,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
 /**
@@ -35,7 +31,7 @@ public class Helper {
         return(Build.VERSION.SDK_INT>Build.VERSION_CODES.LOLLIPOP_MR1);
     }
 
-    public static boolean isTableExists(String tableName, boolean openDb, Context contextIn) {
+    public static boolean doesTableExist(String tableName, boolean openDb, Context contextIn) {
         DBHelper dbHelper = new DBHelper(contextIn);
         SQLiteDatabase newDB = dbHelper.getWritableDatabase();
         if(openDb) {

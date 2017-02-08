@@ -1,6 +1,5 @@
 package com.pc_logix.huntingloghelper;
 
-import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
@@ -13,13 +12,9 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.PowerManager;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -100,7 +95,7 @@ public class SettingsActivity extends AppCompatActivity {
         Button delete = (Button) findViewById(R.id.deleteIcons);
         Button copyDB = (Button) findViewById(R.id.copyDB);
         TextView versionText = (TextView) findViewById(R.id.versionText);
-        versionText.setText(strVersion + strVersionCode + " DB Version " + DBHelper.version + " Has legacy tables: " + Helper.isTableExists("logs", true, this.getApplicationContext()));
+        versionText.setText(strVersion + strVersionCode + " DB Version " + DBHelper.version + " Legacy tables: " + Helper.doesTableExist("logs", true, this.getApplicationContext()));
         btn.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -447,7 +442,6 @@ public class SettingsActivity extends AppCompatActivity {
     private class deleteIconsTask extends AsyncTask<Void, Integer, Integer> {
         private int per = 0;
         private Context context;
-        private PowerManager.WakeLock mWakeLock;
         File f = new File(Environment.getExternalStorageDirectory().toString() + File.separator + "ffxiv-icons");
         String[] entries = f.list();
 
@@ -460,10 +454,6 @@ public class SettingsActivity extends AppCompatActivity {
             super.onPreExecute();
             // take CPU lock to prevent CPU from going off if the user
             // presses the power button during download
-            PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-            mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
-                    getClass().getName());
-            mWakeLock.acquire();
             deleteProgressDialog.show();
             deleteProgressDialog.setMax(f.list().length);
         }
@@ -491,7 +481,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Integer result) {
-            mWakeLock.release();
             deleteProgressDialog.dismiss();
             if (result != 1)
                 Toast.makeText(context,"Decompression error", Toast.LENGTH_LONG).show();
@@ -504,7 +493,6 @@ public class SettingsActivity extends AppCompatActivity {
     private class DownloadTask extends AsyncTask<String, Integer, String> {
 
         private Context context;
-        private PowerManager.WakeLock mWakeLock;
 
         public DownloadTask(Context context) {
             this.context = context;
@@ -513,12 +501,6 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            // take CPU lock to prevent CPU from going off if the user
-            // presses the power button during download
-            PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-            mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
-                    getClass().getName());
-            mWakeLock.acquire();
             mDownloadProgressDialog.show();
         }
 
@@ -533,7 +515,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            mWakeLock.release();
             mDownloadProgressDialog.dismiss();
             if (result != null)
                 Toast.makeText(context,"Download error: "+result, Toast.LENGTH_LONG).show();
@@ -628,7 +609,6 @@ public class SettingsActivity extends AppCompatActivity {
     private class Decompress extends AsyncTask<Void, Integer, Integer> {
 
         private Context context;
-        private PowerManager.WakeLock mWakeLock;
 
         private String _zipFile;
         private String _location;
@@ -646,12 +626,6 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            // take CPU lock to prevent CPU from going off if the user
-            // presses the power button during download
-            PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-            mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
-                    getClass().getName());
-            mWakeLock.acquire();
             mUnzipProgressDialog.show();
         }
 
@@ -708,7 +682,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Integer result) {
-            mWakeLock.release();
             mUnzipProgressDialog.dismiss();
             if (result != 1)
                 Toast.makeText(context,"Decompression error", Toast.LENGTH_LONG).show();

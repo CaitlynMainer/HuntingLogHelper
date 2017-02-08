@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -30,7 +29,6 @@ import com.pc_logix.huntingloghelper.util.DBHelper;
 import com.pc_logix.huntingloghelper.MainActivity;
 import com.pc_logix.huntingloghelper.SettingsActivity;
 import com.pc_logix.huntingloghelper.R;
-import com.pc_logix.huntingloghelper.util.DownloadImageTask;
 import com.pc_logix.huntingloghelper.util.Helper;
 
 import java.io.File;

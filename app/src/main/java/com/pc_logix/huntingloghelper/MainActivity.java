@@ -1,18 +1,12 @@
 package com.pc_logix.huntingloghelper;
 
-import android.app.ProgressDialog;
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.PowerManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -29,19 +23,6 @@ import com.pc_logix.huntingloghelper.LogViews.CraftingLogViewActivity;
 import com.pc_logix.huntingloghelper.LogViews.HuntingLogViewActivity;
 import com.pc_logix.huntingloghelper.util.DBHelper;
 import com.pc_logix.huntingloghelper.util.Helper;
-
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-import java.util.zip.ZipInputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         dbHelper = new DBHelper(this.getApplicationContext());
         newDB = dbHelper.getWritableDatabase();
 
-        if(Helper.isTableExists("logs", true, this.getApplicationContext()) && Helper.isTableExists("hunting_logs", true, this.getApplicationContext())) {
+        if(Helper.doesTableExist("logs", true, this.getApplicationContext()) && Helper.doesTableExist("hunting_logs", true, this.getApplicationContext())) {
             Log.e("Hunting Log", "Attempting to transfer data");
             Toast.makeText(this.getApplicationContext(),"Attempting to transfer progress", Toast.LENGTH_LONG).show();
             Cursor c = newDB.rawQuery("SELECT _id, done FROM logs", null);
@@ -83,13 +64,11 @@ public class MainActivity extends AppCompatActivity {
             newDB.execSQL("DROP TABLE logs");
         }
 
-
         TextView t=(TextView)findViewById(R.id.content);
         t.setText(getResources().getText(R.string.welcome_text));
         if (showAd) {
             mAdView = (AdView) findViewById(R.id.adView);
-            AdRequest adRequest = new AdRequest.Builder()
-                    .build();
+            AdRequest adRequest = new AdRequest.Builder().build();
             mAdView.loadAd(adRequest);
         }
         if(Helper.canMakeSmores() && !hasPermission("android.permission.WRITE_EXTERNAL_STORAGE") && !hasPermission("android.permission.READ_EXTERNAL_STORAGE")) {
