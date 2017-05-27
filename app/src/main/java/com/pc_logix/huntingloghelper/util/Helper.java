@@ -76,9 +76,9 @@ public class Helper {
         }
         if (total > 0) {
             int percent = (done * 100) / total;
-            return classIn + " " + Integer.toString(percent) +"%";
+            return Integer.toString(percent) +"%";
         } else {
-            return classIn + " " + Integer.toString(0) +"%";
+            return Integer.toString(0) +"%";
         }
     }
 

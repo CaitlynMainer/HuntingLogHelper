@@ -9,16 +9,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.pc_logix.huntingloghelper.LogViews.HuntingLogViewActivity">
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="454dp"
-        android:id="@+id/loglist"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView" />
-
     <TextView
         android:text="Rank: "
         android:layout_width="40dp"
@@ -36,4 +26,15 @@
         android:id="@+id/spinner2"
         android:layout_alignBottom="@+id/textView"
         android:layout_toRightOf="@+id/textView" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="454dp"
+        android:id="@+id/loglist"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView" />
+
+
 </RelativeLayout>

@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.pc_logix.huntingloghelper.MainActivity">
     <item
+        android:id="@+id/spinner"
+        android:title="ActionBar Spinner"
+        app:actionViewClass="android.widget.Spinner"
+        android:background="#ff00"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
@@ -11,45 +17,5 @@
         android:id="@+id/action_markAll"
         android:orderInCategory="100"
         android:title="@string/action_markAll"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_Alchemist"
-        android:orderInCategory="69"
-        android:title="Alchemist Recipes"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_Armorer"
-        android:orderInCategory="70"
-        android:title="Armorer Recipes"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_Blacksmith"
-        android:orderInCategory="71"
-        android:title="Blacksmith Recipes"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_Carpenter"
-        android:orderInCategory="72"
-        android:title="Carpenter Recipes"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_Culinarian"
-        android:orderInCategory="73"
-        android:title="Culinarian Recipes"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_Goldsmith"
-        android:orderInCategory="74"
-        android:title="Goldsmith Recipes"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_Leatherworker"
-        android:orderInCategory="75"
-        android:title="Leatherworker Recipes"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_Weaver"
-        android:orderInCategory="77"
-        android:title="Weaver Recipes"
         app:showAsAction="never" />
 </menu>

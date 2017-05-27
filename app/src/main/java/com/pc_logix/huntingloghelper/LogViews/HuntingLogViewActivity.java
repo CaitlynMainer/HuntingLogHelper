@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Environment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -33,6 +34,7 @@ import com.pc_logix.huntingloghelper.util.Helper;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 
 public class HuntingLogViewActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -72,27 +74,39 @@ public class HuntingLogViewActivity extends AppCompatActivity implements Adapter
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        final String classes[] = {"Arcanist","Archer","Conjurer","Gladiator","Lancer","Marauder","Pugilist","Rogue","Thaumaturge","Immortal Flame","Maelstrom","Order of the Twin Adder"};
         getMenuInflater().inflate(R.menu.hunting_log_menu, menu);
+
+        MenuItem item = menu.findItem(R.id.spinner);
+        Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, R.layout.custom_spinner_item, classes);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerArrayAdapter);
+        spinner.setSelection(Arrays.asList(classes).indexOf(myClass));
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            Boolean meh = false;
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                if (meh) {
+                    HuntingLogViewActivity.myClass = classes[position];
+                    Intent myIntent = new Intent(getApplicationContext(), HuntingLogViewActivity.class);
+                    startActivity(myIntent);
+                }
+                meh = true;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
         return true;
     }
 
     @Override
     public boolean onMenuOpened(int featureId, Menu menu) {
-        if (menu != null) {
-            menu.findItem(R.id.action_Arcanist).setTitle(Helper.getCompletionAmount("Arcanist",this.getApplicationContext(),tableName));
-            menu.findItem(R.id.action_Archer).setTitle(Helper.getCompletionAmount("Archer",this.getApplicationContext(),tableName));
-            menu.findItem(R.id.action_Conjurer).setTitle(Helper.getCompletionAmount("Conjurer",this.getApplicationContext(),tableName));
-            menu.findItem(R.id.action_Gladiator).setTitle(Helper.getCompletionAmount("Gladiator",this.getApplicationContext(),tableName));
-            menu.findItem(R.id.action_Lancer).setTitle(Helper.getCompletionAmount("Lancer",this.getApplicationContext(),tableName));
-            menu.findItem(R.id.action_Marauder).setTitle(Helper.getCompletionAmount("Marauder",this.getApplicationContext(),tableName));
-            menu.findItem(R.id.action_Pugilist).setTitle(Helper.getCompletionAmount("Pugilist",this.getApplicationContext(),tableName));
-            menu.findItem(R.id.action_Rogue).setTitle(Helper.getCompletionAmount("Rogue",this.getApplicationContext(),tableName));
-            menu.findItem(R.id.action_Thaumaturge).setTitle(Helper.getCompletionAmount("Thaumaturge",this.getApplicationContext(),tableName));
-            menu.findItem(R.id.action_Immortal_Flames).setTitle(Helper.getCompletionAmount("Immortal Flames",this.getApplicationContext(),tableName));
-            menu.findItem(R.id.action_Maelstrom).setTitle(Helper.getCompletionAmount("Maelstrom",this.getApplicationContext(),tableName));
-            menu.findItem(R.id.action_Twin_Adder).setTitle(Helper.getCompletionAmount("Order of the Twin Adder",this.getApplicationContext(),tableName));
-        }
         return super.onMenuOpened(featureId, menu);
     }
 
@@ -105,55 +119,7 @@ public class HuntingLogViewActivity extends AppCompatActivity implements Adapter
             return true;
         } else {
             //noinspection SimplifiableIfStatement
-            if (id == R.id.action_Gladiator) {
-                HuntingLogViewActivity.myClass = "Gladiator";
-                Intent myIntent = new Intent(this, HuntingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_Arcanist) {
-                HuntingLogViewActivity.myClass = "Arcanist";
-                Intent myIntent = new Intent(this, HuntingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_Archer) {
-                HuntingLogViewActivity.myClass = "Archer";
-                Intent myIntent = new Intent(this, HuntingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_Conjurer) {
-                HuntingLogViewActivity.myClass = "Conjurer";
-                Intent myIntent = new Intent(this, HuntingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_Immortal_Flames) {
-                HuntingLogViewActivity.myClass = "Immortal Flames";
-                Intent myIntent = new Intent(this, HuntingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_Lancer) {
-                HuntingLogViewActivity.myClass = "Lancer";
-                Intent myIntent = new Intent(this, HuntingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_Maelstrom) {
-                HuntingLogViewActivity.myClass = "Maelstrom";
-                Intent myIntent = new Intent(this, HuntingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_Marauder) {
-                HuntingLogViewActivity.myClass = "Marauder";
-                Intent myIntent = new Intent(this, HuntingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_Pugilist) {
-                HuntingLogViewActivity.myClass = "Pugilist";
-                Intent myIntent = new Intent(this, HuntingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_Rogue) {
-                HuntingLogViewActivity.myClass = "Rogue";
-                Intent myIntent = new Intent(this, HuntingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_Twin_Adder) {
-                HuntingLogViewActivity.myClass = "Order of the Twin Adder";
-                Intent myIntent = new Intent(this, HuntingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_Thaumaturge) {
-                HuntingLogViewActivity.myClass = "Thaumaturge";
-                Intent myIntent = new Intent(this, HuntingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_settings) {
+            if (id == R.id.action_settings) {
                 Intent myIntent = new Intent(this, SettingsActivity.class);
                 startActivity(myIntent);
             } else if (id == R.id.action_markAll) {

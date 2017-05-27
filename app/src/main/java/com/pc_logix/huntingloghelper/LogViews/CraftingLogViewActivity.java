@@ -10,6 +10,8 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -33,6 +35,7 @@ import com.pc_logix.huntingloghelper.util.Helper;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 
 public class CraftingLogViewActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -46,6 +49,7 @@ public class CraftingLogViewActivity extends AppCompatActivity implements Adapte
     private String selectedRank;
     protected static String tableName = DBHelper.craftingLogsTable;
     protected static SQLiteDatabase newDB;
+    int value2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,25 +74,53 @@ public class CraftingLogViewActivity extends AppCompatActivity implements Adapte
         }
     }
 
+    public static void selectSpinnerItemByValue(Spinner spnr, long value) {
+        SimpleCursorAdapter adapter = (SimpleCursorAdapter) spnr.getAdapter();
+        for (int position = 0; position < adapter.getCount(); position++) {
+            if(adapter.getItemId(position) == value) {
+                spnr.setSelection(position);
+                return;
+            }
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        final String classes[] = {"Alchemist","Armorer","Blacksmith","Carpenter","Culinarian", "Goldsmith","Leatherworker","Weaver"};
         getMenuInflater().inflate(R.menu.crafting_log_menu, menu);
+
+        MenuItem item = menu.findItem(R.id.spinner);
+        Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, R.layout.custom_spinner_item, classes);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerArrayAdapter);
+        spinner.setSelection(Arrays.asList(classes).indexOf(myClass));
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            Boolean meh = false;
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+
+                if (meh) {
+                    CraftingLogViewActivity.myClass = classes[position];
+                    Intent myIntent = new Intent(getApplicationContext(), CraftingLogViewActivity.class);
+                    myIntent.putExtra("class", position);
+                    startActivity(myIntent);
+                }
+                meh = true;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
         return true;
     }
 
     @Override
     public boolean onMenuOpened(int featureId, Menu menu) {
-        if (menu != null) {
-            menu.findItem(R.id.action_Alchemist).setTitle(Helper.getCompletionAmount("Alchemist",this.getApplicationContext(),tableName));
-            menu.findItem(R.id.action_Armorer).setTitle(Helper.getCompletionAmount("Armorer",this.getApplicationContext(),tableName));
-            menu.findItem(R.id.action_Blacksmith).setTitle(Helper.getCompletionAmount("Blacksmith",this.getApplicationContext(),tableName));
-            menu.findItem(R.id.action_Carpenter).setTitle(Helper.getCompletionAmount("Carpenter",this.getApplicationContext(),tableName));
-            menu.findItem(R.id.action_Culinarian).setTitle(Helper.getCompletionAmount("Culinarian",this.getApplicationContext(),tableName));
-            menu.findItem(R.id.action_Goldsmith).setTitle(Helper.getCompletionAmount("Goldsmith",this.getApplicationContext(),tableName));
-            menu.findItem(R.id.action_Leatherworker).setTitle(Helper.getCompletionAmount("Leatherworker",this.getApplicationContext(),tableName));
-            menu.findItem(R.id.action_Weaver).setTitle(Helper.getCompletionAmount("Weaver",this.getApplicationContext(),tableName));
-        }
         return super.onMenuOpened(featureId, menu);
     }
 
@@ -101,39 +133,7 @@ public class CraftingLogViewActivity extends AppCompatActivity implements Adapte
             return true;
         } else {
             //noinspection SimplifiableIfStatement
-            if (id == R.id.action_Alchemist) {
-                CraftingLogViewActivity.myClass = "Alchemist";
-                Intent myIntent = new Intent(this, CraftingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_Armorer) {
-                CraftingLogViewActivity.myClass = "Armorer";
-                Intent myIntent = new Intent(this, CraftingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_Blacksmith) {
-                CraftingLogViewActivity.myClass = "Blacksmith";
-                Intent myIntent = new Intent(this, CraftingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_Carpenter) {
-                CraftingLogViewActivity.myClass = "Carpenter";
-                Intent myIntent = new Intent(this, CraftingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_Culinarian) {
-                CraftingLogViewActivity.myClass = "Culinarian";
-                Intent myIntent = new Intent(this, CraftingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_Goldsmith) {
-                CraftingLogViewActivity.myClass = "Goldsmith";
-                Intent myIntent = new Intent(this, CraftingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_Leatherworker) {
-                CraftingLogViewActivity.myClass = "Leatherworker";
-                Intent myIntent = new Intent(this, CraftingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_Weaver) {
-                CraftingLogViewActivity.myClass = "Weaver";
-                Intent myIntent = new Intent(this, CraftingLogViewActivity.class);
-                startActivity(myIntent);
-            } else if (id == R.id.action_settings) {
+            if (id == R.id.action_settings) {
                 Intent myIntent = new Intent(this, SettingsActivity.class);
                 startActivity(myIntent);
             } else if (id == R.id.action_markAll) {
