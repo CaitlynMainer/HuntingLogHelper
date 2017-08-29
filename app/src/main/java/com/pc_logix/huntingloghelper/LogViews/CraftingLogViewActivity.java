@@ -86,7 +86,7 @@ public class CraftingLogViewActivity extends AppCompatActivity implements Adapte
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        final String classes[] = {"Alchemist","Armorer","Blacksmith","Carpenter","Culinarian", "Goldsmith","Leatherworker","Weaver"};
+        final String classes[] = {"Alchemist","Armorer","Blacksmith","Carpenter","Culinarian","Goldsmith","Leatherworker","Weaver"};
         getMenuInflater().inflate(R.menu.crafting_log_menu, menu);
 
         MenuItem item = menu.findItem(R.id.spinner);
@@ -96,17 +96,17 @@ public class CraftingLogViewActivity extends AppCompatActivity implements Adapte
         spinner.setAdapter(spinnerArrayAdapter);
         spinner.setSelection(Arrays.asList(classes).indexOf(myClass));
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            Boolean meh = false;
+            Boolean canRun = false;
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
-                if (meh) {
+                if (canRun) {
                     CraftingLogViewActivity.myClass = classes[position];
                     Intent myIntent = new Intent(getApplicationContext(), CraftingLogViewActivity.class);
                     myIntent.putExtra("class", position);
                     startActivity(myIntent);
                 }
-                meh = true;
+                canRun = true;
             }
 
             @Override
@@ -125,7 +125,7 @@ public class CraftingLogViewActivity extends AppCompatActivity implements Adapte
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
-        int id = item.getItemId();
+/*        int id = item.getItemId();
         if (id == 16908332) {
             Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
             startActivityForResult(myIntent, 0);
@@ -161,7 +161,8 @@ public class CraftingLogViewActivity extends AppCompatActivity implements Adapte
                 this.setTitle(Helper.getCompletionAmount(myClass,this.getApplicationContext(),tableName));
             }
             return super.onOptionsItemSelected(item);
-        }
+        }*/
+    return true;
     }
 
     private void displayResultList() {
@@ -257,18 +258,18 @@ public class CraftingLogViewActivity extends AppCompatActivity implements Adapte
             if (levelIn.toLowerCase().equals("all")) {
                 //Log.e("Hunting Log", "SELECT * FROM " + tableName +
                 //        " where class='" + myClass + "' ORDER BY _id");
-                c = newDB.rawQuery("SELECT * FROM " + tableName +
-                        " where class='" + myClass + "' ORDER BY _id", null);
+                //c = newDB.rawQuery("SELECT * FROM " + tableName +
+                //        " where class='" + myClass + "' ORDER BY _id", null);
             } else if (levelIn.toLowerCase().contains("★")) {
                 //Log.e("Hunting Log", "SELECT * FROM " + tableName +
                 //        " where class='" + myClass + "' AND level = '" + levelIn + "' ORDER BY _id");
-                c = newDB.rawQuery("SELECT * FROM " + tableName +
-                        " where class='" + myClass + "' AND level = '" +levelIn + "' ORDER BY _id", null);
+                //c = newDB.rawQuery("SELECT * FROM " + tableName +
+                //        " where class='" + myClass + "' AND level = '" +levelIn + "' ORDER BY _id", null);
             } else {
                 //Log.e("Hunting Log", "SELECT * FROM " + tableName +
                 //        " where class='" + myClass + "' AND level BETWEEN " + levelIn.replace("-", " AND ") + " ORDER BY _id");
-                c = newDB.rawQuery("SELECT * FROM " + tableName +
-                        " where class='" + myClass + "' AND level BETWEEN " + levelIn.replace("-", " AND ") + " ORDER BY _id", null);
+                //c = newDB.rawQuery("SELECT * FROM " + tableName +
+                //        " where class='" + myClass + "' AND level BETWEEN " + levelIn.replace("-", " AND ") + " ORDER BY _id", null);
             }
             ranks.add("1-10");
             ranks.add("11-20");
@@ -284,6 +285,7 @@ public class CraftingLogViewActivity extends AppCompatActivity implements Adapte
             ranks.add("60★★");
             ranks.add("60★★★");
             ranks.add("60★★★★");
+            ranks.add("70★★");
             if (c != null ) {
                 if (c.moveToFirst()) {
                     do {
