@@ -201,11 +201,14 @@ public class CraftingLogViewActivity extends AppCompatActivity implements Adapte
 
                 ImageView logImage = (ImageView) convertView.findViewById(R.id.logIconView);
                 if (icons.get(position).length() > 1) {
-                    File f = new File(Environment.getExternalStorageDirectory().toString() + File.separator + "ffxiv-icons" + File.separator + icons.get(position));
-                    if (f.exists()) {
-                        Bitmap bitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().toString() + File.separator + "ffxiv-icons" + File.separator + icons.get(position));
-                        BitmapDrawable bitmapDrawable = new BitmapDrawable(getApplicationContext().getResources(), bitmap);
-                        logImage.setBackground(bitmapDrawable);
+                    String state = Environment.getExternalStorageState();
+                    if (Environment.MEDIA_MOUNTED.equals(state)) {
+                        File f = new File(Environment.getExternalStorageDirectory().toString() + File.separator + "ffxiv-icons" + File.separator + icons.get(position));
+                        if (f.exists()) {
+                            Bitmap bitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().toString() + File.separator + "ffxiv-icons" + File.separator + icons.get(position));
+                            BitmapDrawable bitmapDrawable = new BitmapDrawable(getApplicationContext().getResources(), bitmap);
+                            logImage.setBackground(bitmapDrawable);
+                        }
                     }
                 }
 

@@ -185,15 +185,17 @@ public class HuntingLogViewActivity extends AppCompatActivity implements Adapter
                     convertView = lInflater.inflate(R.layout.list_item, null);
                 }
                 ImageView logImage = (ImageView) convertView.findViewById(R.id.logIconView);
-                File f = new File(Environment.getExternalStorageDirectory().toString() + File.separator + "ffxiv-icons" + File.separator + icons.get(position));
-                if (f.exists()) {
-                    Bitmap bitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().toString() + File.separator + "ffxiv-icons" + File.separator + icons.get(position));
-                    BitmapDrawable bitmapDrawable = new BitmapDrawable(getApplicationContext().getResources(), bitmap);
-                    logImage.setBackground(bitmapDrawable);
-                } else {
-                    Log.e("Hunting Log", "Icon file " + icons.get(position) + " doesn't exist!");
+                String state = Environment.getExternalStorageState();
+                if (Environment.MEDIA_MOUNTED.equals(state)) {
+                    File f = new File(Environment.getExternalStorageDirectory().toString() + File.separator + "ffxiv-icons" + File.separator + icons.get(position));
+                    if (f.exists()) {
+                        Bitmap bitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().toString() + File.separator + "ffxiv-icons" + File.separator + icons.get(position));
+                        BitmapDrawable bitmapDrawable = new BitmapDrawable(getApplicationContext().getResources(), bitmap);
+                        logImage.setBackground(bitmapDrawable);
+                    } else {
+                        Log.e("Hunting Log", "Icon file " + icons.get(position) + " doesn't exist!");
+                    }
                 }
-
                 CheckedTextView tv = (CheckedTextView) convertView.findViewById(R.id.checkedTextView1);
                 tv.setText(Helper.fromHtml(results.get(position)));
                 if(position %2 == 1)
