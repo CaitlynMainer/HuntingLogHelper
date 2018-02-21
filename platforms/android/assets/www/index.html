@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+    <link rel="apple-touch-startup-image" href="images/apple-touch-startup-image-320x460.png" />
+    <title>FFXIV Log Helper</title>
+    <link rel="stylesheet" href="css/framework7.css">
+    <script type="text/javascript" src="cordova.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link type="text/css" rel="stylesheet" href="css/swipebox.css" />
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,900' rel='stylesheet' type='text/css'>
+</head>
+
+<body id="mobile_wrap">
+    <style type="text/css">
+        .tg {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border-color: #999;
+            width: 100%;
+            table-layout: fixed;
+        }
+        
+        .tg tr {
+            height: 1px;
+        }
+        
+        .tg td {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 0px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: #999;
+            color: #444;
+            background-color: #F7FDFA;
+            border-top-width: 1px;
+            border-bottom-width: 1px;
+        }
+        
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 0px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: #999;
+            color: #fff;
+            background-color: #26ADE4;
+            border-top-width: 1px;
+            border-bottom-width: 1px;
+        }
+        
+        .tg .tg-yw4l {
+            vertical-align: top
+        }
+        
+        .tg .tg-6k2t {
+            background-color: #D2E4FC;
+            vertical-align: top
+        }
+        
+        label {
+            display: block;
+            min-height: 100%;
+            /* for the latest browsers which support min-height */
+            height: auto !important;
+            /* for newer IE versions */
+            height: 100%;
+            /* the only height-related attribute that IE6 does not ignore  */
+        }
+    </style>
+    <div class="statusbar-overlay"></div>
+    <div class="panel-overlay"></div>
+    <div class="panel panel-left panel-cover">
+        <nav class="list-nav">
+            <ul>
+                <li class="home-icon"><a href="#" class="close-panel" onClick="showPage('home')">Home</a></li>
+                <li class="settings-icon"><a href="#" class="close-panel" onClick="showPage('settings')">Settings</a></li>
+                <li class="huntinglog-icon"><a href="#" class="close-panel" onClick="showPage('huntinglogs'); showHuntingLogs()">Hunting Logs</a></li>
+                <li class="craftinglog-icon"><a href="#" class="close-panel" onClick="showPage('craftinglogs'); showCraftingLogs()">Crafting Logs</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="views">
+        <div class="view view-main">
+            <div class="navbar" id="mainnav">
+                <div class="navbar-inner">
+                    <div class="left sliding">
+                        <div class="logo_title">FFXIV Log Helper</div>
+                    </div>
+                    <div class="right menu_open_icon">
+                        <a href="#" data-panel="left" class="link icon-only open-panel"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pages navbar-through toolbar-through">
+                <div data-page="index" class="page homepage">
+                    <div class="page-content">
+                        <div class="hideme" id="home">
+                            <!-- Slider -->
+                            <div class="swiper-container swiper-init" data-effect="coverflow" data-pagination=".swiper-pagination" data-paginationClickable="true" data-autoplay="3000">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <span style="background-color:rgba(0,0,0,0.6);/*background color and opacity together*/">This app was created to assist tracking hunting logs and crafting logs in FFXIV.
+                                 The logs are organized by class. Hunting logs show the name, the amount needed, the region/area where the monsters are found and the x and y position of the dungeon.
+                                 There is no exact position of the monsters within the dungeon.<br>
+                                 Crafting logs are also organized by class and show the required level, ingredients and skill to craft an item.
+                                 Both monster and item icons are available as an optional icon pack (due to the extra size of 35 MB) which can be downloaded in the settings.
+                                 The app was designed and written by Michiyo, with the help of Naomi (Data entry, etc) and Forecaster (Data scraping).
+                                 The hunting and crafting logs were scraped from <a href="http://ffxiv.gamerescape.com">http://ffxiv.gamerescape.com</a>
+                                 Make sure to keep the app up-to-date to ensure having the latest updated logs.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="huntinglogs" class="hideme" style="display: none;">
+                            <br>
+                            <select onchange="change2Class()" id="sel2Class">
+                                <option value="arcanist">Arcanist</option>
+                                <option value="archer">Archer</option>
+                                <option value="conjurer">Conjurer</option>
+                                <option value="gladiator">Gladiator</option>
+                                <option value="lancer">Lancer</option>
+                                <option value="marauder">Marauder</option>
+                                <option value="pugilist">Pugilist</option>
+                                <option value="rogue">Rogue</option>
+                                <option value="thaumaturge">Thaumaturge</option>
+                                <option value="maelstrom">Maelstrom</option>
+                                <option value="immortal_Flames">Immortal Flames</option>
+                                <option value="twin_Adder">Twin Adder</option>
+                            </select>
+                            <select onchange="showHuntingLogs()" id="selRank">
+                                <option value="1">Rank 1</option>
+                                <option value="2">Rank 2</option>
+                                <option value="3">Rank 3</option>
+                                <option value="4">Rank 4</option>
+                                <option value="5">Rank 5</option>
+                            </select>
+                            <table class="tg" id="theHuntingTable">
+                                <thead>
+                                    <tr>
+                                        <th class="tg-yw4l" style="width: 30px">Done</th>
+                                        <th class="tg-yw4l" style="width: 64px">Icon</th>
+                                        <th class="tg-yw4l">Information</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="craftinglogs" class="hideme" style="display: none;">
+                            <br>
+                            <select onchange="changeClass()" id="selClass">
+                                <option value="alchemist">Alchemist</option>
+                                <option value="armorer">Armorer</option>
+                                <option value="blacksmith">Blacksmith</option>
+                                <option value="carpenter">Carpenter</option>
+                                <option value="culinarian">Culinarian</option>
+                                <option value="goldsmith">Goldsmith</option>
+                                <option value="leatherworker">Leatherworker</option>
+                                <option value="weaver">Weaver</option>
+                            </select>
+                            <select onchange="showCraftingLogs()" id="selLevel">
+                                <option value="1-10">1-10</option>
+                                <option value="11-20">11-20</option>
+                                <option value="21-30">21-30</option>
+                                <option value="31-40">31-40</option>
+                                <option value="41-50">41-50</option>
+                                <option value="51-60">51-60</option>
+                                <option value="61-70">61-70</option>
+                                <option value="50★">50★</option>
+                                <option value="50★★">50★★</option>
+                                <option value="50★★★">50★★★</option>
+                                <option value="50★★★★">50★★★★</option>
+                                <option value="60★">60★</option>
+                                <option value="60★★">60★★</option>
+                                <option value="60★★★">60★★★</option>
+                                <option value="60★★★★">60★★★★</option>
+                                <option value="70★">70★</option>
+                                <option value="70★★">70★★</option>
+                            </select>
+                            <table class="tg" id="theCraftingTable">
+                                <thead>
+                                    <tr>
+                                        <th class="tg-yw4l" style="width: 30px">Done</th>
+                                        <th class="tg-yw4l" style="width: 64px">Icon</th>
+                                        <th class="tg-yw4l">Information</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="settings" class="hideme" style="display: none;">
+                            <img class="imageElement" src=""></img><br><br><br>
+                            <div id="status">Moople</div>
+                            <button type="button" onClick="downloadIconPack();">Click Me!</button> 
+                        </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+    <script src="js/jquery.validate.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/framework7.js"></script>
+    <script type="text/javascript" src="js/my-app.js"></script>
+    <script type="text/javascript" src="js/jquery.stickytableheaders.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        document.addEventListener("deviceready", onDeviceReady, false);        
+        function onDeviceReady() {
+            console.log(cordova.file);
+            console.log(FileTransfer);
+                        
+            $('.tg').on('change', ':checkbox', function() {
+                var name = this.name;
+                var value = this.value;
+                if ($(this).is(':checked')) {
+                    localStorage && localStorage.setItem(this.name, 'checked');
+                } else {
+                    localStorage && localStorage.removeItem(this.name);
+                }
+            });
+
+            // Set AdMobAds options:
+            admob.setOptions({
+                publisherId: "pub-1414745948595605", // Required
+                interstitialAdId: "ca-app-pub-1414745948595605/2917922170" // Optional
+            });
+            admob.createBannerView();
+        }
+
+        function changeClass() {
+            document.getElementById("selLevel").selectedIndex = 0;
+            showCraftingLogs();
+        }
+
+        function change2Class() {
+            document.getElementById("selRank").selectedIndex = 0;
+            showHuntingLogs();
+        }
+        
+        var showrank = [1];
+        function highestRank(rank) {
+            if (rank > showrank[showrank.length-1]) {
+                showrank.push(rank);
+            }
+        }
+
+        function setOptions(dropDown, options, selected) {
+            // clear out any existing values
+            dropDown.innerHTML = '';
+            // insert the new options into the drop-down
+            options.forEach(function(value) {
+              dropDown.innerHTML += '<option value="' + value + '">Rank ' + value + '</option>';
+            });
+            dropDown.selectedIndex = selected - 1;
+        }  
+  
+        function showHuntingLogs() {
+            $(".tg").find("tr:gt(1)").remove();
+            $.getJSON("database/hunting/" + $("#sel2Class").val() + ".json",
+                function(json) {
+                    var tr = [];
+                    for (var i = 0; i < json.length; i++) {
+                        var theClass = "";
+                        highestRank(json[i].rank);
+                        if (json[i].rank == parseInt($("#selRank").val())) {
+                            if (i % 2 == 0) {
+                                theClass = " class='tg-6k2t'";
+                            } else {
+                                theClass = " class='tg-yw4l'";
+                            }
+                            var checked;
+                            if (localStorage.getItem(json[i].class + "." + json[i].monster_name) == 'checked') {
+                                checked = "checked=\"checked\"";
+                            } else {
+                                checked = "";
+                            }
+                            tr.push('<tr>');
+                            tr.push("<td" + theClass + "><label><input id=\"" + json[i].class + "." + json[i].enemy + "\" name=\"" + json[i].class + "." + json[i].enemy + "\" type=\"checkbox\"" + checked + "></label></td>");
+                            tr.push("<td" + theClass + "><label for=\"" + json[i].class + "." + json[i].enemy + "\"><img class=\"imageElement\" src=\"log_images/hunting/" + json[i].icon + "\"></label></td>");
+                            tr.push("<td" + theClass + "><label for=\"" + json[i].class + "." + json[i].enemy + "\">" + json[i].enemy + "<br> Set: " + json[i].set + "</label></td>");
+                            tr.push('</tr>');
+                        }
+                    }
+                    rank_select = document.querySelector('#selRank');
+                    setOptions(rank_select, showrank, parseInt($("#selRank").val()));
+                    showrank = [1];
+                    $('#theHuntingTable').append($(tr.join('')));
+                }).fail(function(jqXMLHttpRequest,textStatus,errorThrown) {
+            console.dir(jqXMLHttpRequest);
+            alert('Ajax data request failed: "'+textStatus+':'+errorThrown+'" - see javascript console for details.');
+        }).done(function() {
+                $('#theHuntingTable td').each(function() {
+                    $(this).height($(this).height());
+                });
+            });
+            $('table').stickyTableHeaders({
+                scrollableArea: $('.page-content'),
+                fixedOffset: 43
+            });
+        }
+
+        function showCraftingLogs() {
+            $(".tg").find("tr:gt(1)").remove();
+            $.getJSON("database/recipes/" + $("#selClass").val() + ".json",
+                function(json) {
+                    var tr = [];
+                    for (var i = 0; i < json.length; i++) {
+                        var theClass = "";
+                        var level = [];
+                        if ($("#selLevel").val().indexOf("★") !== -1) {
+                            level = $("#selLevel").val();
+                        } else {
+                            level = $("#selLevel").val().split("-");
+                        }
+                        if ($("#selLevel").val().indexOf("★") !== -1 && json[i].level == $("#selLevel").val() || json[i].level >= parseInt(level[0]) && json[i].level <= parseInt(level[1])) {
+                            if (i % 2 == 0) {
+                                theClass = " class='tg-6k2t'";
+                            } else {
+                                theClass = " class='tg-yw4l'";
+                            }
+                            var ingredients = json[i].ingredients;
+                            var ingredientsOut = "<table>";
+                            var j = 0;
+                            ingredients.forEach(function(ingredient) {
+                                var theClass2 = "";
+                                if (j % 2 == 0) {
+                                    theClass2 = " class='tg-6k2t'";
+                                } else {
+                                    theClass2 = " class='tg-yw4l'";
+                                }
+                                ingredientsOut += "<tr><td" + theClass2 + ">" + ingredient.amount + "</td><td" + theClass2 + "><img src=\"log_images/crafting/" + ingredient.icon + "\"></td><td" + theClass2 + ">" + ingredient.name + "</td></tr>";
+                                j++;
+                            });
+                            ingredientsOut += "</table>";
+                            var checked;
+                            if (localStorage.getItem(json[i].class_name + "." + json[i].item) == 'checked') {
+                                checked = "checked=\"checked\"";
+                            } else {
+                                checked = "";
+                            }
+                            var icon = "log_images/no_image.png";
+                            //if ( checkIfFileExists("log_images/crafting/"+json[i].icon)) {
+                                icon = "log_images/crafting/"+json[i].icon
+                            //}
+                            tr.push('<tr>');
+                            tr.push("<td" + theClass + "><label><input id=\"" + json[i].class_name + "." + json[i].item + "\" name=\"" + json[i].class_name + "." + json[i].item + "\" type=\"checkbox\"" + checked + "></label></td>");
+                            tr.push("<td" + theClass + "><label for=\"" + json[i].class_name + "." + json[i].item + "\"><img src=\"" + icon + "\"></label></td>");
+                            var requires = ""
+                            if (typeof json[i].requires.name !== 'undefined') {
+                                requires = "<br> Requires: " + json[i].requires.name;
+                            } else if (json[i].requires != '') {
+                                requires = "<br> Requires: " + json[i].requires;
+                            }
+                            tr.push("<td" + theClass + "><label for=\"" + json[i].class_name + "." + json[i].item + "\">" + json[i].item + "<br> Level: " + json[i].level + requires + "<br> Ingredients:<br>" + ingredientsOut + "</label></td>");
+                            tr.push('</tr>');
+                            ingredientsOut = "";
+                        }
+                    }
+                    $('#theCraftingTable').append($(tr.join('')));
+                });
+            $('table').stickyTableHeaders({
+                scrollableArea: $('.page-content'),
+                fixedOffset: 43
+            });
+        }
+
+        function showPage(div) {
+            var cusid_ele = document.getElementsByClassName('hideme');
+            for (var i = 0; i < cusid_ele.length; ++i) {
+                var item = cusid_ele[i];
+                item.style.display = 'none';
+            }
+            var x = document.getElementById(div);
+            if (x.style.display === 'none') {
+                x.style.display = 'block';
+            } else {
+                x.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>

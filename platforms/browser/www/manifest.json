@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "FFXIV Log Helper",
+  "short_name": "FFXIV Log Helper",
+  "version": "com.pc_logix.huntingloghelper",
+  "description": "FFXIV Log Helper Hunting, Crafting, Fishing and more!",
+  "author": "PC-Logix",
+  "icons": [],
+  "start_url": "index.html"
+}

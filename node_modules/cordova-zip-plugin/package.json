@@ -1,0 +1,98 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cordova-zip-plugin",
+        "scope": null,
+        "escapedName": "cordova-zip-plugin",
+        "name": "cordova-zip-plugin",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Users\\Administrator\\Documents\\GitHub\\HuntingLogHelper"
+    ]
+  ],
+  "_from": "cordova-zip-plugin@latest",
+  "_id": "cordova-zip-plugin@0.0.4",
+  "_inCache": true,
+  "_location": "/cordova-zip-plugin",
+  "_nodeVersion": "5.2.0",
+  "_npmUser": {
+    "name": "jjdltc",
+    "email": "jjdltc@gmail.com"
+  },
+  "_npmVersion": "3.5.2",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova-zip-plugin",
+    "scope": null,
+    "escapedName": "cordova-zip-plugin",
+    "name": "cordova-zip-plugin",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-zip-plugin/-/cordova-zip-plugin-0.0.4.tgz",
+  "_shasum": "05026c78cc4ccaa2d3251ab426ca789992bbb7e4",
+  "_shrinkwrap": null,
+  "_spec": "cordova-zip-plugin",
+  "_where": "C:\\Users\\Administrator\\Documents\\GitHub\\HuntingLogHelper",
+  "author": {
+    "name": "Joel De La Torriente - jjdltc"
+  },
+  "bugs": {
+    "url": "https://github.com/jjdltc/jjdltc-cordova-plugin-zip/issues"
+  },
+  "cordova": {
+    "id": "com.jjdltc.cordova.plugin.zip",
+    "platforms": [
+      "android"
+    ]
+  },
+  "dependencies": {},
+  "description": "Cordova zip compress and decompress",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "05026c78cc4ccaa2d3251ab426ca789992bbb7e4",
+    "tarball": "https://registry.npmjs.org/cordova-zip-plugin/-/cordova-zip-plugin-0.0.4.tgz"
+  },
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.6.0"
+    }
+  ],
+  "gitHead": "8c72d438b0429c0c706855f4e923fabb329c3f92",
+  "homepage": "https://github.com/jjdltc/jjdltc-cordova-plugin-zip#readme",
+  "keywords": [
+    "cordova",
+    "zip",
+    "compress",
+    "decompress",
+    "unzip",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "jjdltc",
+      "email": "jjdltc@gmail.com"
+    }
+  ],
+  "name": "cordova-zip-plugin",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://jjdltc@github.com/jjdltc/jjdltc-cordova-plugin-zip.git"
+  },
+  "scripts": {},
+  "version": "0.0.4"
+}
