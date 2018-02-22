@@ -47,7 +47,6 @@
     "cordova-plugin-device-orientation": "~1.0.2",
     "cordova-plugin-dialogs": "~1.2.0",
     "cordova-plugin-extension": "^1.5.1",
-    "cordova-plugin-fastrde-downloader": "git+https://github.com/gvhuyssteen/cordova-plugin-fastrde-downloader.git",
     "cordova-plugin-file": "^5.0.0",
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-geolocation": "~2.1.0",

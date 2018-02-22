@@ -119,6 +119,5 @@
     <plugin name="cordova-plugin-contacts" spec="~2.0.1" />
     <plugin name="cordova-plugin-extension" spec="^1.5.1" />
     <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
-    <plugin name="com.jjdltc.cordova.plugin.zip" spec="~0.0.4" />
     <plugin name="cordova-plugin-file" spec="^5.0.0" />
 </widget>
