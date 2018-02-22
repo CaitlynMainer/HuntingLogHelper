@@ -221,9 +221,6 @@
     <script type="text/javascript" charset="utf-8">
         document.addEventListener("deviceready", onDeviceReady, false);        
         function onDeviceReady() {
-            console.log(cordova.file);
-            console.log(FileTransfer);
-                        
             $('.tg').on('change', ':checkbox', function() {
                 var name = this.name;
                 var value = this.value;
@@ -284,7 +281,7 @@
                                 theClass = " class='tg-yw4l'";
                             }
                             var checked;
-                            if (localStorage.getItem(json[i].class + "." + json[i].monster_name) == 'checked') {
+                            if (localStorage.getItem(json[i].class + "." + json[i].enemy) == 'checked') {
                                 checked = "checked=\"checked\"";
                             } else {
                                 checked = "";
@@ -301,9 +298,9 @@
                     showrank = [1];
                     $('#theHuntingTable').append($(tr.join('')));
                 }).fail(function(jqXMLHttpRequest,textStatus,errorThrown) {
-            console.dir(jqXMLHttpRequest);
-            alert('Ajax data request failed: "'+textStatus+':'+errorThrown+'" - see javascript console for details.');
-        }).done(function() {
+                    console.dir(jqXMLHttpRequest);
+                    alert('Ajax data request failed: "'+textStatus+':'+errorThrown+'" - see javascript console for details.');
+                }).done(function() {
                 $('#theHuntingTable td').each(function() {
                     $(this).height($(this).height());
                 });
