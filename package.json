@@ -60,6 +60,7 @@
     "cordova-plugin-whitelist": "~1.2.1",
     "cordova-zip-plugin": "0.0.4",
     "expect": "^22.4.0",
-    "tests": "^0.4.2"
+    "tests": "^0.4.2",
+    "com.jjdltc.cordova.plugin.zip": "~0.0.4"
   }
 }

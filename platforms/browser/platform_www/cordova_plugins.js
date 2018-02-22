@@ -339,14 +339,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/com.jjdltc.cordova.plugin.zip/www/JJzip.js",
-        "id": "com.jjdltc.cordova.plugin.zip.JJzip",
-        "pluginId": "com.jjdltc.cordova.plugin.zip",
-        "clobbers": [
-            "JJzip"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-file/www/DirectoryEntry.js",
         "id": "cordova-plugin-file.DirectoryEntry",
         "pluginId": "cordova-plugin-file",
@@ -550,7 +542,6 @@ module.exports.metadata =
     "cordova-plugin-admobpro": "2.29.22",
     "cordova-plugin-zip": "3.1.0",
     "cordova-plugin-android-permissions": "1.0.0",
-    "com.jjdltc.cordova.plugin.zip": "0.0.4",
     "cordova-plugin-file": "5.0.0"
 }
 // BOTTOM OF METADATA

@@ -274,14 +274,6 @@ module.exports = [
         ]
     },
     {
-        "id": "com.jjdltc.cordova.plugin.zip.JJzip",
-        "file": "plugins/com.jjdltc.cordova.plugin.zip/www/JJzip.js",
-        "pluginId": "com.jjdltc.cordova.plugin.zip",
-        "clobbers": [
-            "JJzip"
-        ]
-    },
-    {
         "id": "cordova-plugin-file-transfer.FileTransferError",
         "file": "plugins/cordova-plugin-file-transfer/www/FileTransferError.js",
         "pluginId": "cordova-plugin-file-transfer",
@@ -321,7 +313,6 @@ module.exports.metadata =
     "cordova-plugin-vibration": "2.1.5",
     "cordova-plugin-whitelist": "1.2.2",
     "cordova-plugin-android-permissions": "1.0.0",
-    "com.jjdltc.cordova.plugin.zip": "0.0.4",
     "cordova-plugin-file-transfer": "1.7.1"
 };
 // BOTTOM OF METADATA
