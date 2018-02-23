@@ -1,11 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.pc_logix.huntingloghelper" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>HuntingLogHelper</name>
-    <description>
-        Hello World sample application that responds to the deviceready event.
-    </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+     <name>FFXIV Log Helper</name>
+     <description>
+     <description>
+        FFXIV Log Helper Hunting, Crafting, Fishing and more!
+     </description>
+     </description>
+    <author email="support@pc-logix.com" href="http://pc-logix.com">
+        PC-Logix
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
