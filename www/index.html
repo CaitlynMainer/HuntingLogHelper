@@ -180,16 +180,16 @@
                                 <option value="41-50">41-50</option>
                                 <option value="51-60">51-60</option>
                                 <option value="61-70">61-70</option>
-                                <option value="50★">50★</option>
-                                <option value="50★★">50★★</option>
-                                <option value="50★★★">50★★★</option>
-                                <option value="50★★★★">50★★★★</option>
-                                <option value="60★">60★</option>
-                                <option value="60★★">60★★</option>
-                                <option value="60★★★">60★★★</option>
-                                <option value="60★★★★">60★★★★</option>
-                                <option value="70★">70★</option>
-                                <option value="70★★">70★★</option>
+                                <option value="50?">50?</option>
+                                <option value="50??">50??</option>
+                                <option value="50???">50???</option>
+                                <option value="50????">50????</option>
+                                <option value="60?">60?</option>
+                                <option value="60??">60??</option>
+                                <option value="60???">60???</option>
+                                <option value="60????">60????</option>
+                                <option value="70?">70?</option>
+                                <option value="70??">70??</option>
                             </select>
                             <table class="tg" id="theCraftingTable">
                                 <thead>
@@ -263,7 +263,8 @@
             options.forEach(function(value) {
               dropDown.innerHTML += '<option value="' + value + '">Rank ' + value + '</option>';
             });
-            dropDown.selectedIndex = selected - 1;
+			dropDown.innerHTML += '<option value="all">Show All</option>';
+            dropDown.selectedIndex = selected;
         }  
   
         function showHuntingLogs() {
@@ -274,7 +275,7 @@
                     for (var i = 0; i < json.length; i++) {
                         var theClass = "";
                         highestRank(json[i].rank);
-                        if (json[i].rank == parseInt($("#selRank").val())) {
+                        if ((json[i].rank == parseInt($("#selRank").val())) || ($("#selRank").val() == 'all')) {
                             if (i % 2 == 0) {
                                 theClass = " class='tg-6k2t'";
                             } else {
@@ -289,12 +290,14 @@
                             tr.push('<tr>');
                             tr.push("<td" + theClass + "><label><input id=\"" + json[i].class + "." + json[i].enemy + "\" name=\"" + json[i].class + "." + json[i].enemy + "\" type=\"checkbox\"" + checked + "></label></td>");
                             tr.push("<td" + theClass + "><label for=\"" + json[i].class + "." + json[i].enemy + "\"><img class=\"imageElement\" src=\"log_images/hunting/" + json[i].icon + "\"></label></td>");
-                            tr.push("<td" + theClass + "><label for=\"" + json[i].class + "." + json[i].enemy + "\">" + json[i].enemy + "<br> Set: " + json[i].set + "</label></td>");
+                            tr.push("<td" + theClass + "><label for=\"" + json[i].class + "." + json[i].enemy + "\">" + json[i].enemy + " x "+json[i].num + "<br> Set: " + json[i].set);
+                            tr.push("<br> Area: " + json[i].area);
+                            tr.push("<br> X: " + json[i].x_loc + " Y: " + json[i].y_loc + "</label></td>");
                             tr.push('</tr>');
                         }
                     }
                     rank_select = document.querySelector('#selRank');
-                    setOptions(rank_select, showrank, parseInt($("#selRank").val()));
+                    setOptions(rank_select, showrank, $("#selRank").prop('selectedIndex'));
                     showrank = [1];
                     $('#theHuntingTable').append($(tr.join('')));
                 }).fail(function(jqXMLHttpRequest,textStatus,errorThrown) {
@@ -319,12 +322,12 @@
                     for (var i = 0; i < json.length; i++) {
                         var theClass = "";
                         var level = [];
-                        if ($("#selLevel").val().indexOf("★") !== -1) {
+                        if ($("#selLevel").val().indexOf("?") !== -1) {
                             level = $("#selLevel").val();
                         } else {
                             level = $("#selLevel").val().split("-");
                         }
-                        if ($("#selLevel").val().indexOf("★") !== -1 && json[i].level == $("#selLevel").val() || json[i].level >= parseInt(level[0]) && json[i].level <= parseInt(level[1])) {
+                        if ($("#selLevel").val().indexOf("?") !== -1 && json[i].level == $("#selLevel").val() || json[i].level >= parseInt(level[0]) && json[i].level <= parseInt(level[1])) {
                             if (i % 2 == 0) {
                                 theClass = " class='tg-6k2t'";
                             } else {

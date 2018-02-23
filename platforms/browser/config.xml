@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.pc_logix.huntingloghelper" version="1.2.56" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.pc_logix.huntingloghelper" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <feature name="Camera">
         <param name="browser-package" value="Camera" />
     </feature>
     <feature name="Device">
         <param name="browser-package" value="Device" />
     </feature>
-    <name>FFXIV Log Helper</name>
+    <name>HuntingLogHelper</name>
     <description>
-        FFXIV Log Helper Hunting, Crafting, Fishing and more!
+        Hello World sample application that responds to the deviceready event.
     </description>
-    <author email="support@pc-logix.com" href="http://pc-logix.com">
-        PC-Logix
+    <author email="support@phonegap.com" href="http://phonegap.com">
+        PhoneGap Team
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -22,8 +22,5 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="14" />
-    <preference name="AndroidPersistentFileLocation" value="Internal" />
-    <preference name="iosPersistentFileLocation" value="Library" />
-    <preference name="BackupWebStorage" value="none" />
+    <preference name="android-minSdkVersion" value="16" />
 </widget>

@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.pc_logix.huntingloghelper" version="1.2.56" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.pc_logix.huntingloghelper" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <feature name="StatusBar">
+        <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
+        <param name="onload" value="true" />
+    </feature>
     <feature name="Battery">
         <param name="android-package" value="org.apache.cordova.batterystatus.BatteryListener" />
     </feature>
@@ -21,17 +25,27 @@
     <feature name="Notification">
         <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
     </feature>
+    <feature name="Vibration">
+        <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
+    </feature>
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
     <feature name="File">
         <param name="android-package" value="org.apache.cordova.file.FileUtils" />
         <param name="onload" value="true" />
     </feature>
     <allow-navigation href="cdvfile:*" />
-    <name>FFXIV Log Helper</name>
+    <feature name="FileTransfer">
+        <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
+    </feature>
+    <name>HuntingLogHelper</name>
     <description>
-        FFXIV Log Helper Hunting, Crafting, Fishing and more!
+        Hello World sample application that responds to the deviceready event.
     </description>
-    <author email="support@pc-logix.com" href="http://pc-logix.com">
-        PC-Logix
+    <author email="support@phonegap.com" href="http://phonegap.com">
+        PhoneGap Team
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -62,8 +76,5 @@
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="14" />
-    <preference name="AndroidPersistentFileLocation" value="Internal" />
-    <preference name="iosPersistentFileLocation" value="Library" />
-    <preference name="BackupWebStorage" value="none" />
+    <preference name="android-minSdkVersion" value="16" />
 </widget>

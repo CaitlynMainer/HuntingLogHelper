@@ -1,89 +1,52 @@
 {
-  "prepare_queue": {
-    "installed": [],
-    "uninstalled": []
-  },
-  "config_munge": {
-    "files": {}
-  },
-  "installed_plugins": {
-<<<<<<< HEAD
-=======
-    "cordova-plugin-admobpro": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
     },
->>>>>>> 869192dc33ad34370c20b252f33a3ff8d787a257
-    "cordova-plugin-battery-status": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
+    "config_munge": {
+        "files": {}
     },
-    "cordova-plugin-camera": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
+    "installed_plugins": {
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
+        },
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
+        }
     },
-<<<<<<< HEAD
-=======
-    "cordova-plugin-compat": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
-    },
->>>>>>> 869192dc33ad34370c20b252f33a3ff8d787a257
-    "cordova-plugin-console": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
-    },
-    "cordova-plugin-contacts": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
-    },
-    "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
-    },
-    "cordova-plugin-device-motion": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
-    },
-    "cordova-plugin-device-orientation": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
-    },
-    "cordova-plugin-dialogs": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
-<<<<<<< HEAD
+    "dependent_plugins": {
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
+        }
     }
-  },
-  "dependent_plugins": {
-    "cordova-plugin-file": {
-=======
-    },
-    "cordova-plugin-extension": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
-    },
-    "cordova-plugin-geolocation": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
-    },
-    "cordova-plugin-globalization": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
-    },
-    "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
-    },
-    "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
-    },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
-    },
-    "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
-    },
-    "cordova-plugin-vibration": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
-    },
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
-    },
-    "cordova-plugin-android-permissions": {
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
-    }
-  },
-  "dependent_plugins": {
-    "cordova-plugin-file-transfer": {
->>>>>>> 869192dc33ad34370c20b252f33a3ff8d787a257
-      "PACKAGE_NAME": "com.pc_logix.huntingloghelper"
-    }
-  }
 }
