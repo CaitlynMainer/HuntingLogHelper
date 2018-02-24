@@ -6,12 +6,14 @@
     <feature name="Device">
         <param name="browser-package" value="Device" />
     </feature>
-    <name>HuntingLogHelper</name>
+    <name>FFXIV Log Helper</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        <description>
+        FFXIV Log Helper Hunting, Crafting, Fishing and more!
+     </description>
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="support@pc-logix.com" href="http://pc-logix.com">
+        PC-Logix
     </author>
     <content src="index.html" />
     <access origin="*" />
